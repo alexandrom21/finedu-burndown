@@ -3,9 +3,9 @@
   "project_number": 1,
   "status_field": "Status",
   "done_status": "Done",
-  "sprint_name": "Sprint 1",
-  "sprint_start": "2026-08-17",
-  "sprint_end": "2026-08-30",
+  "sprint_name": "Sprint 0",
+  "sprint_start": "2026-08-07",
+  "sprint_end": "2026-08-21",
   "timezone": "America/Lima",
   "initial_scope": null
 }
