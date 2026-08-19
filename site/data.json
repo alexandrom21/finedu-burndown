@@ -6,37 +6,37 @@
   "sprint_start": "2026-08-12",
   "sprint_end": "2026-08-21",
   "initial_scope": 48,
-  "updated_at": "2026-08-19T19:09:14.008Z",
+  "updated_at": "2026-08-19T19:23:00.220Z",
   "history": [
     {
       "date": "2026-08-12",
-      "total": 40,
+      "total": 48,
       "done": 0,
-      "remaining": 40
+      "remaining": 48
     },
     {
       "date": "2026-08-13",
-      "total": 40,
+      "total": 48,
       "done": 0,
-      "remaining": 40
+      "remaining": 48
     },
     {
       "date": "2026-08-14",
-      "total": 40,
+      "total": 48,
       "done": 0,
-      "remaining": 40
+      "remaining": 48
     },
     {
       "date": "2026-08-15",
-      "total": 40,
+      "total": 48,
       "done": 0,
-      "remaining": 40
+      "remaining": 48
     },
     {
       "date": "2026-08-16",
-      "total": 40,
+      "total": 48,
       "done": 0,
-      "remaining": 40
+      "remaining": 48
     },
     {
       "date": "2026-08-17",
