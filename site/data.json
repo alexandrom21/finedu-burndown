@@ -6,7 +6,7 @@
   "sprint_start": "2026-08-12",
   "sprint_end": "2026-08-21",
   "initial_scope": 48,
-  "updated_at": "2026-08-19T19:34:38.388Z",
+  "updated_at": "2026-08-19T19:46:44.220Z",
   "history": [
     {
       "date": "2026-08-12",
@@ -47,14 +47,14 @@
     {
       "date": "2026-08-18",
       "total": 48,
-      "done": 4,
-      "remaining": 44
+      "done": 7,
+      "remaining": 41
     },
     {
       "date": "2026-08-19",
       "total": 48,
-      "done": 4,
-      "remaining": 44
+      "done": 7,
+      "remaining": 41
     }
   ]
 }
