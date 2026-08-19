@@ -1,0 +1,16 @@
+FINedu Burndown - Archivos listos
+
+1) Sube TODO el contenido de esta carpeta a un repositorio público de GitHub.
+2) Edita config.json con las fechas reales de tu sprint.
+3) Crea un token de GitHub con acceso de lectura al Project.
+4) Guarda el token como Repository secret con el nombre PROJECT_TOKEN.
+5) En Settings > Pages, selecciona GitHub Actions como Source.
+6) En Actions, ejecuta "Actualizar y publicar Burndown".
+7) Abre la URL de GitHub Pages.
+
+IMPORTANTE:
+- El gráfico usa el campo de Project llamado "Status".
+- Considera completado el valor "Done".
+- Si tu campo o valor se llaman distinto, cambia status_field o done_status en config.json.
+- El historial real empieza a registrarse desde la primera ejecución del Action.
+- Si initial_scope queda en null, la primera ejecución toma el total actual como alcance inicial.

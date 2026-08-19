@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>FinEdu Bot - Burndown Chart</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.9/dist/chart.umd.min.js"></script>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      max-width: 1050px;
+      margin: 0 auto;
+      padding: 28px 18px;
+      background: #0d1117;
+      color: #e6edf3;
+    }
+    h1 { margin-bottom: 4px; }
+    .sub { color: #8b949e; margin-top: 0; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(160px,1fr));
+      gap: 12px;
+      margin: 22px 0;
+    }
+    .card, .chartbox {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 18px;
+    }
+    .label { color: #8b949e; font-size: 13px; }
+    .value { font-size: 28px; font-weight: 700; margin-top: 4px; }
+    .chartbox { min-height: 430px; }
+    canvas { max-height: 420px; }
+    .footer { color: #8b949e; font-size: 12px; margin-top: 14px; }
+    .error { color: #ff7b72; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <h1>📉 Burndown Chart — FinEdu Bot</h1>
+  <p class="sub" id="subtitle">Cargando datos del GitHub Project…</p>
+
+  <div class="cards">
+    <div class="card"><div class="label">Total</div><div class="value" id="total">—</div></div>
+    <div class="card"><div class="label">Completadas</div><div class="value" id="done">—</div></div>
+    <div class="card"><div class="label">Restantes</div><div class="value" id="remaining">—</div></div>
+    <div class="card"><div class="label">Progreso</div><div class="value" id="progress">—</div></div>
+  </div>
+
+  <div class="chartbox">
+    <canvas id="chart"></canvas>
+    <p id="error" class="error"></p>
+  </div>
+
+  <p class="footer" id="updated"></p>
+
+  <script src="./app.js"></script>
+</body>
+</html>
