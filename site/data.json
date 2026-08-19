@@ -3,11 +3,53 @@
   "organization": "Celula4-FinEdu-Bot",
   "project_number": 1,
   "sprint_name": "Sprint 0",
-  "sprint_start": "2026-08-07",
+  "sprint_start": "2026-08-12",
   "sprint_end": "2026-08-21",
   "initial_scope": 48,
-  "updated_at": "2026-08-19T19:03:40.922Z",
+  "updated_at": "2026-08-19T19:09:14.008Z",
   "history": [
+    {
+      "date": "2026-08-12",
+      "total": 40,
+      "done": 0,
+      "remaining": 40
+    },
+    {
+      "date": "2026-08-13",
+      "total": 40,
+      "done": 0,
+      "remaining": 40
+    },
+    {
+      "date": "2026-08-14",
+      "total": 40,
+      "done": 0,
+      "remaining": 40
+    },
+    {
+      "date": "2026-08-15",
+      "total": 40,
+      "done": 0,
+      "remaining": 40
+    },
+    {
+      "date": "2026-08-16",
+      "total": 40,
+      "done": 0,
+      "remaining": 40
+    },
+    {
+      "date": "2026-08-17",
+      "total": 48,
+      "done": 7,
+      "remaining": 41
+    },
+    {
+      "date": "2026-08-18",
+      "total": 48,
+      "done": 4,
+      "remaining": 44
+    },
     {
       "date": "2026-08-19",
       "total": 48,
