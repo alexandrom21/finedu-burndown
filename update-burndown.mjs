@@ -231,17 +231,20 @@ function getCurrentStatus(item) {
    STATUS QUE TENÍA EN UNA FECHA
 ========================================= */
 
-function getStatusAtDate(item, date) {
+function getFirstDoneDate(item) {
 
   const timeline =
     item.content?.timelineItems?.nodes || [];
 
-  const events = timeline
+  const doneName =
+    config.done_status.trim().toLowerCase();
+
+  const doneEvents = timeline
 
     .filter(event =>
       event &&
       event.project?.number === config.project_number &&
-      localDate(event.createdAt) <= date
+      (event.status || "").trim().toLowerCase() === doneName
     )
 
     .sort(
@@ -251,21 +254,36 @@ function getStatusAtDate(item, date) {
     );
 
 
-  if (events.length > 0) {
+  /*
+   Si alguna vez llegó a Done,
+   tomamos SOLAMENTE la primera fecha.
+  */
 
-    return events[events.length - 1].status;
+  if (doneEvents.length > 0) {
+
+    return localDate(
+      doneEvents[0].createdAt
+    );
 
   }
 
 
   /*
-   Si estamos consultando hoy y no existe
-   historial, usamos el estado actual.
+   Si actualmente está Done pero no
+   encontramos el evento histórico,
+   lo contamos como completado hoy.
   */
 
-  if (date === todayLocal()) {
+  const currentStatus =
+    getCurrentStatus(item);
 
-    return getCurrentStatus(item);
+  if (
+    (currentStatus || "")
+      .trim()
+      .toLowerCase() === doneName
+  ) {
+
+    return todayLocal();
 
   }
 
@@ -325,22 +343,27 @@ while (date <= lastDate) {
   let done = 0;
 
 
-  for (const item of existingIssues) {
+  for (const item of issues) {
 
-    const status =
-      getStatusAtDate(item, date);
+  const firstDoneDate =
+    getFirstDoneDate(item);
 
-    if (
-      (status || "")
-        .trim()
-        .toLowerCase() === doneName
-    ) {
+  /*
+   Si la HU llegó a Done en esta fecha
+   o antes, se considera completada
+   para siempre en el Burndown.
+  */
 
-      done++;
+  if (
+    firstDoneDate &&
+    firstDoneDate <= date
+  ) {
 
-    }
+    done++;
 
   }
+
+}
 
 
   const total = 
