@@ -343,10 +343,11 @@ while (date <= lastDate) {
   }
 
 
-  const total = existingIssues.length;
+  const total = 
+    config.initial_scope ?? issues.length;
 
   const remaining =
-    total - done;
+    Math.max(0, total - done);
 
 
   history.push({
