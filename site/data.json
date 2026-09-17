@@ -4,9 +4,9 @@
   "project_number": 1,
   "sprint_name": "Sprint 0",
   "sprint_start": "2026-08-12",
-  "sprint_end": "2026-09-04",
+  "sprint_end": "2026-09-18",
   "initial_scope": 40,
-  "updated_at": "2026-09-17T19:00:28.083Z",
+  "updated_at": "2026-09-17T20:57:11.869Z",
   "history": [
     {
       "date": "2026-08-12",
@@ -148,6 +148,84 @@
     },
     {
       "date": "2026-09-04",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-05",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-06",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-07",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-08",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-09",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-10",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-11",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-12",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-13",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-14",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-15",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-16",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-17",
       "total": 40,
       "done": 17,
       "remaining": 23
