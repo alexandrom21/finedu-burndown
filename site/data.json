@@ -3,11 +3,293 @@
   "organization": "Celula4-FinEdu-Bot",
   "project_number": 1,
   "sprint_name": "Sprint 0",
-  "sprint_start": "2026-09-28",
+  "sprint_start": "2026-08-12",
   "sprint_end": "2026-10-15",
   "initial_scope": 40,
-  "updated_at": "2026-10-16T04:24:11.500Z",
+  "updated_at": "2026-10-16T04:26:20.800Z",
   "history": [
+    {
+      "date": "2026-08-12",
+      "total": 40,
+      "done": 0,
+      "remaining": 40
+    },
+    {
+      "date": "2026-08-13",
+      "total": 40,
+      "done": 0,
+      "remaining": 40
+    },
+    {
+      "date": "2026-08-14",
+      "total": 40,
+      "done": 0,
+      "remaining": 40
+    },
+    {
+      "date": "2026-08-15",
+      "total": 40,
+      "done": 0,
+      "remaining": 40
+    },
+    {
+      "date": "2026-08-16",
+      "total": 40,
+      "done": 0,
+      "remaining": 40
+    },
+    {
+      "date": "2026-08-17",
+      "total": 40,
+      "done": 7,
+      "remaining": 33
+    },
+    {
+      "date": "2026-08-18",
+      "total": 40,
+      "done": 7,
+      "remaining": 33
+    },
+    {
+      "date": "2026-08-19",
+      "total": 40,
+      "done": 7,
+      "remaining": 33
+    },
+    {
+      "date": "2026-08-20",
+      "total": 40,
+      "done": 7,
+      "remaining": 33
+    },
+    {
+      "date": "2026-08-21",
+      "total": 40,
+      "done": 7,
+      "remaining": 33
+    },
+    {
+      "date": "2026-08-22",
+      "total": 40,
+      "done": 7,
+      "remaining": 33
+    },
+    {
+      "date": "2026-08-23",
+      "total": 40,
+      "done": 7,
+      "remaining": 33
+    },
+    {
+      "date": "2026-08-24",
+      "total": 40,
+      "done": 8,
+      "remaining": 32
+    },
+    {
+      "date": "2026-08-25",
+      "total": 40,
+      "done": 8,
+      "remaining": 32
+    },
+    {
+      "date": "2026-08-26",
+      "total": 40,
+      "done": 8,
+      "remaining": 32
+    },
+    {
+      "date": "2026-08-27",
+      "total": 40,
+      "done": 8,
+      "remaining": 32
+    },
+    {
+      "date": "2026-08-28",
+      "total": 40,
+      "done": 9,
+      "remaining": 31
+    },
+    {
+      "date": "2026-08-29",
+      "total": 40,
+      "done": 9,
+      "remaining": 31
+    },
+    {
+      "date": "2026-08-30",
+      "total": 40,
+      "done": 9,
+      "remaining": 31
+    },
+    {
+      "date": "2026-08-31",
+      "total": 40,
+      "done": 12,
+      "remaining": 28
+    },
+    {
+      "date": "2026-09-01",
+      "total": 40,
+      "done": 13,
+      "remaining": 27
+    },
+    {
+      "date": "2026-09-02",
+      "total": 40,
+      "done": 13,
+      "remaining": 27
+    },
+    {
+      "date": "2026-09-03",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-04",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-05",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-06",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-07",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-08",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-09",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-10",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-11",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-12",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-13",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-14",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-15",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-16",
+      "total": 40,
+      "done": 17,
+      "remaining": 23
+    },
+    {
+      "date": "2026-09-17",
+      "total": 40,
+      "done": 26,
+      "remaining": 14
+    },
+    {
+      "date": "2026-09-18",
+      "total": 40,
+      "done": 26,
+      "remaining": 14
+    },
+    {
+      "date": "2026-09-19",
+      "total": 40,
+      "done": 26,
+      "remaining": 14
+    },
+    {
+      "date": "2026-09-20",
+      "total": 40,
+      "done": 26,
+      "remaining": 14
+    },
+    {
+      "date": "2026-09-21",
+      "total": 40,
+      "done": 26,
+      "remaining": 14
+    },
+    {
+      "date": "2026-09-22",
+      "total": 40,
+      "done": 26,
+      "remaining": 14
+    },
+    {
+      "date": "2026-09-23",
+      "total": 40,
+      "done": 26,
+      "remaining": 14
+    },
+    {
+      "date": "2026-09-24",
+      "total": 40,
+      "done": 26,
+      "remaining": 14
+    },
+    {
+      "date": "2026-09-25",
+      "total": 40,
+      "done": 26,
+      "remaining": 14
+    },
+    {
+      "date": "2026-09-26",
+      "total": 40,
+      "done": 26,
+      "remaining": 14
+    },
+    {
+      "date": "2026-09-27",
+      "total": 40,
+      "done": 26,
+      "remaining": 14
+    },
     {
       "date": "2026-09-28",
       "total": 40,
