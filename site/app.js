@@ -43,21 +43,6 @@ async function load() {
     }
   }
 
-  // Construir arrays de puntos para resaltar días con cambio
-  const pointRadius = new Array(actual.length).fill(0);
-  const pointBackgroundColor = new Array(actual.length).fill('rgba(255,99,132,0.8)');
-
-  let prevValue = null;
-  for (let i = 0; i < actual.length; i++) {
-    const v = actual[i];
-    if (v === null) continue;
-    if (prevValue === null || v !== prevValue) {
-      // Día con cambio: marcar punto más visible
-      pointRadius[i] = 5;
-    }
-    prevValue = v;
-  }
-
   const latest = [...data.history].sort((a,b) => b.date.localeCompare(a.date))[0];
   if (latest) {
     document.getElementById("total").textContent = latest.total;
@@ -90,24 +75,13 @@ async function load() {
           data: ideal,
           borderDash: [8, 6],
           tension: 0,
-          spanGaps: false,
-          borderColor: 'rgba(54,162,235,0.9)',
-          backgroundColor: 'rgba(54,162,235,0.05)',
-          pointRadius: 0
+          spanGaps: false
         },
         {
           label: "Real",
           data: actual,
-          // Mostrar los descensos como saltos (pasos) y resaltar puntos donde hubo cambio
-          tension: 0,
-          stepped: true,
-          spanGaps: true,
-          borderColor: 'rgba(255,99,132,0.95)',
-          backgroundColor: 'rgba(255,99,132,0.06)',
-          borderWidth: 2,
-          pointRadius,
-          pointBackgroundColor: pointBackgroundColor,
-          pointHoverRadius: 7
+          tension: 0.2,
+          spanGaps: true
         }
       ]
     },
