@@ -4,8 +4,8 @@
   "status_field": "Status",
   "done_status": "Done",
   "sprint_name": "Sprint 0",
-  "sprint_start": "2026-08-07",
-  "sprint_end": "2026-09-18",
+  "sprint_start": "2026-09-28",
+  "sprint_end": "2026-10-15",
   "timezone": "America/Lima",
   "initial_scope": 40
 }
