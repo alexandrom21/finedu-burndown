@@ -321,10 +321,7 @@ if (
 
 const history = [];
 
-// Usar la fecha configurada si está definida, si no usar la fecha del primer issue
-const startDate = config.sprint_start ?? firstIssueDate;
-
-let date = startDate;
+let date = firstIssueDate;
 
 
 while (date <= lastDate) {
@@ -414,11 +411,11 @@ const data = {
 
   /*
   AHORA LA GRÁFICA EMPIEZA
-  DESDE startDate (configurado o primer issue)
+  DESDE EL PRIMER ISSUE
   */
 
   sprint_start:
-    startDate,
+    firstIssueDate,
 
   sprint_end:
     config.sprint_end,
