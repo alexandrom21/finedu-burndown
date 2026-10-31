@@ -71,13 +71,11 @@ query($org: String!, $number: Int!, $after: String) {
 async function graphql(variables) {
   const response = await fetch("https://api.github.com/graphql", {
     method: "POST",
-
     headers: {
       Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
       "User-Agent": "finedu-burndown"
     },
-
     body: JSON.stringify({
       query,
       variables
@@ -93,10 +91,6 @@ async function graphql(variables) {
 
   return body.data;
 }
-
-/* =========================================
-   OBTENER TODOS LOS ITEMS DEL PROJECT
-============================================== */
 
 let after = null;
 let items = [];
@@ -127,23 +121,11 @@ do {
   after = project.items.pageInfo.hasNextPage
     ? project.items.pageInfo.endCursor
     : null;
-
 } while (after);
 
-/* =========================================
-   SOLO ISSUES
-============================================== */
-
 const issues = items.filter(item =>
-  item.type === "ISSUE" &&
-  item.content?.createdAt
+  item.type === "ISSUE" && item.content?.createdAt
 );
-
-console.log(`Issues encontrados: ${issues.length}`);
-
-/* =========================================
-   FECHAS
-============================================== */
 
 function localDate(isoDate) {
   const parts = new Intl.DateTimeFormat("en-CA", {
@@ -170,14 +152,7 @@ function addDay(dateString) {
   return date.toISOString().slice(0, 10);
 }
 
-/* =========================================
-   ENCONTRAR PRIMER ISSUE
-============================================== */
-
-const creationDates = issues.map(issue =>
-  localDate(issue.content.createdAt)
-);
-
+const creationDates = issues.map(issue => localDate(issue.content.createdAt));
 creationDates.sort();
 const firstIssueDate = creationDates[0];
 
@@ -185,12 +160,6 @@ if (!firstIssueDate) {
   console.error("No existen Issues en el Project.");
   process.exit(1);
 }
-
-console.log(`Primer Issue creado: ${firstIssueDate}`);
-
-/* =========================================
-   STATUS ACTUAL
-============================================== */
 
 function getCurrentStatus(item) {
   for (const field of item.fieldValues.nodes) {
@@ -201,13 +170,8 @@ function getCurrentStatus(item) {
       return field.name;
     }
   }
-
   return null;
 }
-
-/* =========================================
-   STATUS QUE TENÍA EN UNA FECHA
-============================================== */
 
 function getFirstDoneDate(item) {
   const timeline = item.content?.timelineItems?.nodes || [];
@@ -233,49 +197,36 @@ function getFirstDoneDate(item) {
   return null;
 }
 
-/* =========================================
-   RECONSTRUIR BURNDOWN HISTÓRICO
-============================================== */
-
 const today = todayLocal();
 const sprintStart = config.sprint_start || firstIssueDate;
 const sprintEnd = config.sprint_end || today;
 const total = config.initial_scope ?? issues.length;
 
-let history = [];
+const history = [];
 let date = sprintStart;
 
 while (date <= sprintEnd) {
-  const existingIssues = issues.filter(item =>
-    localDate(item.content.createdAt) <= date
-  );
-
   let done = 0;
 
   for (const item of issues) {
     const firstDoneDate = getFirstDoneDate(item);
-
     if (firstDoneDate && firstDoneDate <= date) {
       done++;
     }
   }
 
-  const cappedDone = Math.min(total, done);
-  const remaining = Math.max(0, total - cappedDone);
+  const doneCount = Math.min(total, done);
+  const remaining = Math.max(0, total - doneCount);
 
   history.push({
     date,
     total,
-    done: cappedDone,
+    done: doneCount,
     remaining
   });
 
   date = addDay(date);
 }
-
-/* =========================================
-   GUARDAR DATA.JSON
-============================================== */
 
 const latest = history[history.length - 1];
 
