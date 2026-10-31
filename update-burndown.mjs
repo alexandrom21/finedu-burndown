@@ -173,6 +173,12 @@ function getCurrentStatus(item) {
   return null;
 }
 
+function isWithinSprint(dateString) {
+  const sprintStart = config.sprint_start || firstIssueDate;
+  const sprintEnd = config.sprint_end || todayLocal();
+  return dateString >= sprintStart && dateString <= sprintEnd;
+}
+
 function getFirstDoneDate(item) {
   const timeline = item.content?.timelineItems?.nodes || [];
   const doneName = config.done_status.trim().toLowerCase();
@@ -186,12 +192,14 @@ function getFirstDoneDate(item) {
     .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
   if (doneEvents.length > 0) {
-    return localDate(doneEvents[0].createdAt);
+    const doneDate = localDate(doneEvents[0].createdAt);
+    return isWithinSprint(doneDate) ? doneDate : null;
   }
 
   const currentStatus = getCurrentStatus(item);
   if ((currentStatus || "").trim().toLowerCase() === doneName) {
-    return todayLocal();
+    const today = todayLocal();
+    return isWithinSprint(today) ? today : null;
   }
 
   return null;
