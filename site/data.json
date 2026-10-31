@@ -6,21 +6,91 @@
   "sprint_start": "2026-10-19",
   "sprint_end": "2026-11-01",
   "initial_scope": 6,
-  "updated_at": "2026-10-31T00:00:00.000Z",
+  "updated_at": "2026-10-31T00:23:19.279Z",
   "history": [
-    { "date": "2026-10-19", "total": 6, "done": 0, "remaining": 6 },
-    { "date": "2026-10-20", "total": 6, "done": 0, "remaining": 6 },
-    { "date": "2026-10-21", "total": 6, "done": 0, "remaining": 6 },
-    { "date": "2026-10-22", "total": 6, "done": 0, "remaining": 6 },
-    { "date": "2026-10-23", "total": 6, "done": 0, "remaining": 6 },
-    { "date": "2026-10-24", "total": 6, "done": 0, "remaining": 6 },
-    { "date": "2026-10-25", "total": 6, "done": 0, "remaining": 6 },
-    { "date": "2026-10-26", "total": 6, "done": 0, "remaining": 6 },
-    { "date": "2026-10-27", "total": 6, "done": 1, "remaining": 5 },
-    { "date": "2026-10-28", "total": 6, "done": 1, "remaining": 5 },
-    { "date": "2026-10-29", "total": 6, "done": 1, "remaining": 5 },
-    { "date": "2026-10-30", "total": 6, "done": 1, "remaining": 5 },
-    { "date": "2026-10-31", "total": 6, "done": 1, "remaining": 5 },
-    { "date": "2026-11-01", "total": 6, "done": 1, "remaining": 5 }
+    {
+      "date": "2026-10-19",
+      "total": 6,
+      "done": 0,
+      "remaining": 6
+    },
+    {
+      "date": "2026-10-20",
+      "total": 6,
+      "done": 0,
+      "remaining": 6
+    },
+    {
+      "date": "2026-10-21",
+      "total": 6,
+      "done": 0,
+      "remaining": 6
+    },
+    {
+      "date": "2026-10-22",
+      "total": 6,
+      "done": 0,
+      "remaining": 6
+    },
+    {
+      "date": "2026-10-23",
+      "total": 6,
+      "done": 0,
+      "remaining": 6
+    },
+    {
+      "date": "2026-10-24",
+      "total": 6,
+      "done": 0,
+      "remaining": 6
+    },
+    {
+      "date": "2026-10-25",
+      "total": 6,
+      "done": 0,
+      "remaining": 6
+    },
+    {
+      "date": "2026-10-26",
+      "total": 6,
+      "done": 0,
+      "remaining": 6
+    },
+    {
+      "date": "2026-10-27",
+      "total": 6,
+      "done": 1,
+      "remaining": 5
+    },
+    {
+      "date": "2026-10-28",
+      "total": 6,
+      "done": 1,
+      "remaining": 5
+    },
+    {
+      "date": "2026-10-29",
+      "total": 6,
+      "done": 1,
+      "remaining": 5
+    },
+    {
+      "date": "2026-10-30",
+      "total": 6,
+      "done": 1,
+      "remaining": 5
+    },
+    {
+      "date": "2026-10-31",
+      "total": 6,
+      "done": 1,
+      "remaining": 5
+    },
+    {
+      "date": "2026-11-01",
+      "total": 6,
+      "done": 1,
+      "remaining": 5
+    }
   ]
 }
