@@ -207,7 +207,11 @@ function getFirstDoneDate(item) {
 
 const today = todayLocal();
 const sprintStart = config.sprint_start || firstIssueDate;
-const sprintEnd = config.sprint_end || today;
+let sprintEnd = config.sprint_end || today;
+if (new Date(sprintEnd) > new Date(today)) {
+  sprintEnd = today;
+}
+
 const total = config.initial_scope ?? issues.length;
 
 const history = [];
@@ -244,7 +248,7 @@ const data = {
   project_number: config.project_number,
   sprint_name: config.sprint_name,
   sprint_start: sprintStart,
-  sprint_end: sprintEnd,
+  sprint_end: config.sprint_end,
   initial_scope: total,
   updated_at: new Date().toISOString(),
   history
