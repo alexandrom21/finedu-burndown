@@ -96,14 +96,13 @@ async function graphql(variables) {
 
 /* =========================================
    OBTENER TODOS LOS ITEMS DEL PROJECT
-========================================= */
+============================================== */
 
 let after = null;
 let items = [];
 let projectTitle = "";
 
 do {
-
   const data = await graphql({
     org: config.organization,
     number: config.project_number,
@@ -123,7 +122,6 @@ do {
   }
 
   projectTitle = project.title;
-
   items.push(...project.items.nodes);
 
   after = project.items.pageInfo.hasNextPage
@@ -132,10 +130,9 @@ do {
 
 } while (after);
 
-
 /* =========================================
    SOLO ISSUES
-========================================= */
+============================================== */
 
 const issues = items.filter(item =>
   item.type === "ISSUE" &&
@@ -144,13 +141,11 @@ const issues = items.filter(item =>
 
 console.log(`Issues encontrados: ${issues.length}`);
 
-
 /* =========================================
    FECHAS
-========================================= */
+============================================== */
 
 function localDate(isoDate) {
-
   const parts = new Intl.DateTimeFormat("en-CA", {
     timeZone: config.timezone || "America/Lima",
     year: "numeric",
@@ -165,37 +160,25 @@ function localDate(isoDate) {
   return `${values.year}-${values.month}-${values.day}`;
 }
 
-
 function todayLocal() {
-
   return localDate(new Date().toISOString());
-
 }
-
 
 function addDay(dateString) {
-
   const date = new Date(`${dateString}T00:00:00Z`);
-
-  date.setUTCDate(
-    date.getUTCDate() + 1
-  );
-
+  date.setUTCDate(date.getUTCDate() + 1);
   return date.toISOString().slice(0, 10);
-
 }
-
 
 /* =========================================
    ENCONTRAR PRIMER ISSUE
-========================================= */
+============================================== */
 
 const creationDates = issues.map(issue =>
   localDate(issue.content.createdAt)
 );
 
 creationDates.sort();
-
 const firstIssueDate = creationDates[0];
 
 if (!firstIssueDate) {
@@ -205,273 +188,120 @@ if (!firstIssueDate) {
 
 console.log(`Primer Issue creado: ${firstIssueDate}`);
 
-
 /* =========================================
    STATUS ACTUAL
-========================================= */
+============================================== */
 
 function getCurrentStatus(item) {
-
   for (const field of item.fieldValues.nodes) {
-
     if (
       field?.field?.name === config.status_field &&
       typeof field?.name === "string"
     ) {
       return field.name;
     }
-
   }
 
   return null;
 }
 
-
 /* =========================================
    STATUS QUE TENÍA EN UNA FECHA
-========================================= */
+============================================== */
 
 function getFirstDoneDate(item) {
-
-  const timeline =
-    item.content?.timelineItems?.nodes || [];
-
-  const doneName =
-    config.done_status.trim().toLowerCase();
+  const timeline = item.content?.timelineItems?.nodes || [];
+  const doneName = config.done_status.trim().toLowerCase();
 
   const doneEvents = timeline
-
     .filter(event =>
       event &&
       event.project?.number === config.project_number &&
       (event.status || "").trim().toLowerCase() === doneName
     )
-
-    .sort(
-      (a, b) =>
-        new Date(a.createdAt) -
-        new Date(b.createdAt)
-    );
-
-
-  /*
-   Si alguna vez llegó a Done,
-   tomamos SOLAMENTE la primera fecha.
-  */
+    .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
   if (doneEvents.length > 0) {
-
-    return localDate(
-      doneEvents[0].createdAt
-    );
-
+    return localDate(doneEvents[0].createdAt);
   }
 
-
-  /*
-   Si actualmente está Done pero no
-   encontramos el evento histórico,
-   lo contamos como completado hoy.
-  */
-
-  const currentStatus =
-    getCurrentStatus(item);
-
-  if (
-    (currentStatus || "")
-      .trim()
-      .toLowerCase() === doneName
-  ) {
-
+  const currentStatus = getCurrentStatus(item);
+  if ((currentStatus || "").trim().toLowerCase() === doneName) {
     return todayLocal();
-
   }
-
 
   return null;
 }
 
-
 /* =========================================
    RECONSTRUIR BURNDOWN HISTÓRICO
-========================================= */
-
-const doneName =
-  config.done_status.trim().toLowerCase();
+============================================== */
 
 const today = todayLocal();
+const sprintStart = config.sprint_start || firstIssueDate;
+const sprintEnd = config.sprint_end || today;
+const total = config.initial_scope ?? issues.length;
 
-let lastDate = today;
+let history = [];
+let date = sprintStart;
 
-
-/*
-Si ya terminó el Sprint, no seguimos
-dibujando después de la fecha final.
-*/
-
-if (
-  config.sprint_end &&
-  config.sprint_end < today
-) {
-
-  lastDate = config.sprint_end;
-
-}
-
-
-const history = [];
-
-let date = firstIssueDate;
-
-
-while (date <= lastDate) {
-
-  /*
-  Issues que ya existían en ese día
-  */
-
-  const existingIssues =
-    issues.filter(item =>
-
-      localDate(
-        item.content.createdAt
-      ) <= date
-
-    );
-
+while (date <= sprintEnd) {
+  const existingIssues = issues.filter(item =>
+    localDate(item.content.createdAt) <= date
+  );
 
   let done = 0;
 
-
   for (const item of issues) {
+    const firstDoneDate = getFirstDoneDate(item);
 
-  const firstDoneDate =
-    getFirstDoneDate(item);
-
-  /*
-   Si la HU llegó a Done en esta fecha
-   o antes, se considera completada
-   para siempre en el Burndown.
-  */
-
-  if (
-    firstDoneDate &&
-    firstDoneDate <= date
-  ) {
-
-    done++;
-
+    if (firstDoneDate && firstDoneDate <= date) {
+      done++;
+    }
   }
 
-}
-
-
-  const total = 
-    config.initial_scope ?? issues.length;
-
-  const remaining =
-    Math.max(0, total - done);
-
+  const cappedDone = Math.min(total, done);
+  const remaining = Math.max(0, total - cappedDone);
 
   history.push({
-
     date,
     total,
-    done,
+    done: cappedDone,
     remaining
-
   });
 
-
   date = addDay(date);
-
 }
-
 
 /* =========================================
    GUARDAR DATA.JSON
-========================================= */
+============================================== */
 
-const latest =
-  history[history.length - 1];
-
+const latest = history[history.length - 1];
 
 const data = {
-
   project: projectTitle,
-
-  organization:
-    config.organization,
-
-  project_number:
-    config.project_number,
-
-  sprint_name:
-    config.sprint_name,
-
-  /*
-  AHORA LA GRÁFICA EMPIEZA
-  DESDE EL PRIMER ISSUE
-  */
-
-  sprint_start:
-    firstIssueDate,
-
-  sprint_end:
-    config.sprint_end,
-
-  /*
-  Si defines initial_scope en config.json
-  se utiliza ese número.
-
-  Si está en null, usa el total actual.
-  */
-
-  initial_scope:
-    config.initial_scope ?? issues.length,
-
-  updated_at:
-    new Date().toISOString(),
-
+  organization: config.organization,
+  project_number: config.project_number,
+  sprint_name: config.sprint_name,
+  sprint_start: sprintStart,
+  sprint_end: sprintEnd,
+  initial_scope: total,
+  updated_at: new Date().toISOString(),
   history
-
 };
 
-
 fs.writeFileSync(
-
   "site/data.json",
-
-  JSON.stringify(
-    data,
-    null,
-    2
-  ) + "\n",
-
+  JSON.stringify(data, null, 2) + "\n",
   "utf8"
-
 );
-
 
 console.log("");
 console.log("===== BURNDOWN =====");
-
-console.log(
-  `Project: ${projectTitle}`
-);
-
-console.log(
-  `Inicio histórico: ${firstIssueDate}`
-);
-
-console.log(
-  `Total actual: ${latest?.total ?? 0}`
-);
-
-console.log(
-  `Done: ${latest?.done ?? 0}`
-);
-
-console.log(
-  `Restantes: ${latest?.remaining ?? 0}`
-);
+console.log(`Project: ${projectTitle}`);
+console.log(`Inicio configurado: ${sprintStart}`);
+console.log(`Fin configurado: ${sprintEnd}`);
+console.log(`Total: ${latest?.total ?? 0}`);
+console.log(`Done: ${latest?.done ?? 0}`);
+console.log(`Restantes: ${latest?.remaining ?? 0}`);
