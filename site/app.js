@@ -13,13 +13,13 @@ async function load() {
 
   const start = parseDate(data.sprint_start);
   const end = parseDate(data.sprint_end);
-  const latest = [...data.history].sort((a,b) => b.date.localeCompare(a.date))[0];
-  const chartEnd = latest && latest.date > data.sprint_end
-    ? parseDate(latest.date)
-    : end;
   const dayMs = 86400000;
-  const sprintDays = Math.round((end - start) / dayMs);
-  const totalDays = Math.round((chartEnd - start) / dayMs);
+
+  const chartEnd = [...data.history]
+    .map(item => parseDate(item.date))
+    .reduce((max, date) => (date > max ? date : max), end);
+  const sprintDays = Math.max(1, Math.round((end - start) / dayMs));
+  const totalDays = Math.max(0, Math.round((chartEnd - start) / dayMs));
 
   const labels = [];
   const ideal = [];
@@ -41,11 +41,11 @@ async function load() {
     if (historyMap.has(iso)) {
       actual.push(historyMap.get(iso).remaining);
     } else {
-      // No inventamos datos históricos. Solo conectamos puntos que sí fueron registrados.
       actual.push(null);
     }
   }
 
+  const latest = [...data.history].sort((a,b) => b.date.localeCompare(a.date))[0];
   if (latest) {
     document.getElementById("total").textContent = latest.total;
     document.getElementById("done").textContent = latest.done;
