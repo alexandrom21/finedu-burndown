@@ -191,15 +191,18 @@ function getFirstDoneDate(item) {
     )
     .sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
 
-  if (doneEvents.length > 0) {
-    const doneDate = localDate(doneEvents[0].createdAt);
-    return isWithinSprint(doneDate) ? doneDate : null;
+  const firstInSprint = doneEvents.find(event =>
+    isWithinSprint(localDate(event.createdAt))
+  );
+  if (firstInSprint) {
+    return localDate(firstInSprint.createdAt);
   }
 
+  // Si el issue está Done actualmente pero se completó después del sprint,
+  // registramos el estado actual en la fecha de hoy sin alterar el historial pasado.
   const currentStatus = getCurrentStatus(item);
   if ((currentStatus || "").trim().toLowerCase() === doneName) {
-    const today = todayLocal();
-    return isWithinSprint(today) ? today : null;
+    return todayLocal();
   }
 
   return null;
@@ -216,8 +219,9 @@ const total = config.initial_scope ?? issues.length;
 
 const history = [];
 let date = sprintStart;
+const historyEnd = today > sprintEnd ? today : sprintEnd;
 
-while (date <= sprintEnd) {
+while (date <= historyEnd) {
   let done = 0;
 
   for (const item of issues) {
