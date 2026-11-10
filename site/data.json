@@ -6,7 +6,7 @@
   "sprint_start": "2026-10-19",
   "sprint_end": "2026-11-01",
   "initial_scope": 6,
-  "updated_at": "2026-11-10T03:42:45.010Z",
+  "updated_at": "2026-11-10T11:48:44.031Z",
   "history": [
     {
       "date": "2026-10-19",
@@ -136,6 +136,12 @@
     },
     {
       "date": "2026-11-09",
+      "total": 6,
+      "done": 3,
+      "remaining": 3
+    },
+    {
+      "date": "2026-11-10",
       "total": 6,
       "done": 6,
       "remaining": 0
